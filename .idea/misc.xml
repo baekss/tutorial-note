@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/tutorial-eureka" />
+    <file type="web" url="file://$PROJECT_DIR$/tutorial-note" />
     <file type="web" url="file://$PROJECT_DIR$/tutorial-note-eureka" />
     <file type="web" url="file://$PROJECT_DIR$/tutorial-note-note1" />
     <file type="web" url="file://$PROJECT_DIR$/tutorial-note-user" />
+    <file type="web" url="file://$PROJECT_DIR$/tutorial-user" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="12" project-jdk-type="JavaSDK" />
 </project>

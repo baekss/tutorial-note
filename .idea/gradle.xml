@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/tutorial-note-eureka" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/tutorial-eureka" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/tutorial-note-eureka" />
+            <option value="$PROJECT_DIR$/tutorial-eureka" />
           </set>
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/tutorial-note-note1" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/tutorial-note" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/tutorial-note-note1" />
+            <option value="$PROJECT_DIR$/tutorial-note" />
           </set>
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/tutorial-note-user" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/tutorial-user" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/tutorial-note-user" />
+            <option value="$PROJECT_DIR$/tutorial-user" />
           </set>
         </option>
       </GradleProjectSettings>
