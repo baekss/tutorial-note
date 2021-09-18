@@ -18,8 +18,8 @@ spring:
           uri: http://127.0.0.1:8001/
           predicates:
             - Path=/order-service/**
-            # first-service(id) ??(http://127.0.0.1:8001/)? end point(uri) ? ?? ????
-            # gateway server host:port + predicates + client server path ???? ??? ??? ?
+            # first-service(id) 어플(http://127.0.0.1:8001/)의 end point(uri) 를 가기 위해서는
+            # gateway server host:port + predicates + client server path 조합으로 요청을 보내야 함
             # (ex. http://127.0.0.1:8000/order-service/api/orders)
         - id: second-service
           uri: http://127.0.0.1:8002/
