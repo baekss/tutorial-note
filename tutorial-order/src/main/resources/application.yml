@@ -1,0 +1,16 @@
+server:
+  # port: 0 # Random port
+  port: 8001
+
+spring:
+  application:
+    name: order-service
+
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true # order-service 를 eureka 서버에 등록
+    fetch-registry: true # eureka 서버를 통해 order-service 검색 가능
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka # eureka 서버 위치

@@ -7,8 +7,16 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.20/18bcea7d5df4d49227b4a0743a536208ce4825bb/lombok-1.18.20.jar" />
         </processorPath>
-        <module name="tutorial-user-service.main" />
+        <module name="tutorial-order.main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="com.tutorial.tutorial" target="11" />
+      <module name="com.tutorial.tutorial.main" target="11" />
+      <module name="com.tutorial.tutorial.test" target="11" />
+      <module name="tutorial-user-service" target="11" />
+      <module name="tutorial-user-service.main" target="11" />
+      <module name="tutorial-user-service.test" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
