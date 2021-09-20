@@ -22,12 +22,14 @@ spring:
             # gateway server host:port + predicates + client server path 조합으로 요청을 보내야 함
             # (ex. http://127.0.0.1:8000/order-service/api/orders)
           filters:
-            - AddRequestHeader=order-request, order-request-header2
-            - AddResponseHeader=order-response, order-response-header2
+            - CustomFilter
+#            - AddRequestHeader=order-request, order-request-header2
+#            - AddResponseHeader=order-response, order-response-header2
         - id: second-service
           uri: http://127.0.0.1:8002/
           predicates:
             - Path=/user-service/**
           filters:
-            - AddRequestHeader=user-request, user-request-header2
-            - AddResponseHeader=user-response, user-response-header2
+            - CustomFilter
+#            - AddRequestHeader=user-request, user-request-header2
+#            - AddResponseHeader=user-response, user-response-header2
