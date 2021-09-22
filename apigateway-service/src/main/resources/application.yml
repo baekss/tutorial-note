@@ -13,6 +13,12 @@ spring:
     name: apigateway-service
   cloud:
     gateway:
+      default-filters:
+        - name: GlobalFilter
+          args:
+            baseMessage: Spring Cloud Gateway Global Filter
+            preLogger: true
+            postLogger: true
       routes:
         - id: first-service
           uri: http://127.0.0.1:8001/
@@ -30,6 +36,11 @@ spring:
           predicates:
             - Path=/user-service/**
           filters:
-            - CustomFilter
+            - name: CustomFilter
+            - name: LoggingFilter
+              args:
+                baseMessage: Logging Filter
+                preLogger: true
+                postLogger: true
 #            - AddRequestHeader=user-request, user-request-header2
 #            - AddResponseHeader=user-response, user-response-header2
