@@ -2,9 +2,11 @@ server:
   port: 8000
 
 eureka:
+#  instance:
+#    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka
 
@@ -21,7 +23,8 @@ spring:
             postLogger: true
       routes:
         - id: first-service
-          uri: http://127.0.0.1:8001/
+#          uri: http://127.0.0.1:8001/
+          uri: lb://order-service
           predicates:
             - Path=/order-service/**
             # first-service(id) 어플(http://127.0.0.1:8001/)의 end point(uri) 를 가기 위해서는
@@ -32,7 +35,8 @@ spring:
 #            - AddRequestHeader=order-request, order-request-header2
 #            - AddResponseHeader=order-response, order-response-header2
         - id: second-service
-          uri: http://127.0.0.1:8002/
+#          uri: http://127.0.0.1:8002/
+          uri: lb://user-service
           predicates:
             - Path=/user-service/**
           filters:

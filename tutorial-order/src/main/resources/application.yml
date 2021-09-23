@@ -1,6 +1,6 @@
 server:
-  # port: 0 # Random port
-  port: 8001
+  port: 0 # Random port
+  # port: 8001
 
 spring:
   application:
@@ -8,7 +8,10 @@ spring:
 
 eureka:
   instance:
-    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+    lease-renewal-interval-in-seconds: 3
+    lease-expiration-duration-in-seconds: 5
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    # port 0 지정시 다수의 random port 인스턴스 띄워져 있어도 eureka 모니터링에서는 1개의 인스턴스로만 표시. 따라서 인스턴스 id 기반으로 표시방법 변경.
   client:
     register-with-eureka: true # order-service 를 eureka 서버에 등록
     fetch-registry: true # eureka 서버를 통해 order-service 검색 가능

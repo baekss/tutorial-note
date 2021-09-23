@@ -1,6 +1,6 @@
 server:
-  # port: 0 # Random port
-  port: 8002
+  port: 0 # Random port
+  # port: 8002
 
 spring:
   application:
