@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.toList;
 import com.client.dto.UserDto;
 import com.client.repository.User;
 import com.client.repository.UserRepositorty;
+import com.client.vo.ResponseUser;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -19,25 +20,24 @@ public class UserServiceImpl implements UserService {
 	private final UserRepositorty userRepositorty;
 
 	@Override
-	public UserDto createUser(UserDto userDto) {
+	public ResponseUser createUser(UserDto userDto) {
 		userDto.setUserId(UUID.randomUUID().toString());
 
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		User user = mapper.map(userDto, User.class);
-		user.changeEncryptedPwd(user.getEncryptedPwd());
+		user.setEncryptedPwd("");
 
-		userRepositorty.save(user);
-		return userDto;
+		return mapper.map(userRepositorty.save(user), ResponseUser.class);
 	}
 
 	@Override
-	public List<UserDto> findAll() {
+	public List<ResponseUser> findAll() {
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		return userRepositorty.findAll()
 			.stream()
-			.map(user -> mapper.map(user, UserDto.class))
+			.map(user -> mapper.map(user, ResponseUser.class))
 			.collect(toList());
 	}
 }

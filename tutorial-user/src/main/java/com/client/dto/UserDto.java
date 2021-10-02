@@ -9,9 +9,7 @@ import java.time.LocalDate;
 public class UserDto {
 	private String email;
 	private String name;
-	private String pwd;
+	private String password;
 	private String userId;
 	private LocalDate createdAt;
-
-	private String encryptedPwd;
 }

@@ -1,13 +1,11 @@
 package com.client.vo;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Getter
-@Setter
+@Data
 public class RequestUser {
 	@NotNull(message = "Email cannot be null")
 	@Size(min = 2, message = "Email cannot be less than two characters")

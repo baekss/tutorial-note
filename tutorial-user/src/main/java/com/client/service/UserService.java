@@ -1,9 +1,10 @@
 package com.client.service;
 
 import com.client.dto.UserDto;
+import com.client.vo.ResponseUser;
 import java.util.List;
 
 public interface UserService {
-	UserDto createUser(UserDto userDto);
-	List<UserDto> findAll();
+	ResponseUser createUser(UserDto userDto);
+	List<ResponseUser> findAll();
 }

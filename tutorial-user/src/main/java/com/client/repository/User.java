@@ -1,6 +1,7 @@
 package com.client.repository;
 
 import lombok.Getter;
+import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class User {
@@ -27,8 +29,4 @@ public class User {
 
 	@Column(nullable = false, unique = true)
 	private String encryptedPwd;
-
-	public void changeEncryptedPwd(String encryptedPwd) {
-		this.encryptedPwd = encryptedPwd;
-	}
 }
