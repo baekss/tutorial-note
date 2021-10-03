@@ -1,11 +1,9 @@
 package com.client.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
 public class UserDto {
 	private String email;
 	private String name;
