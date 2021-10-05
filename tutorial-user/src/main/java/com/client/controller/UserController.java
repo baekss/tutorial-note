@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/")
+@RequestMapping("/user-service")
 public class UserController {
 
 	private final Environment env;
@@ -17,7 +17,7 @@ public class UserController {
 
 	@GetMapping("/health_check")
 	public String status() {
-		return "It's Working";
+		return String.format("It's Working on port %s", env.getProperty("local.server.port"));
 	}
 
 	@GetMapping("/welcome")

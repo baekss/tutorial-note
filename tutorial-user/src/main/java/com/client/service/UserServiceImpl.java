@@ -4,10 +4,11 @@ import static java.util.stream.Collectors.toList;
 
 import com.client.dto.UserDto;
 import com.client.repository.User;
-import com.client.repository.UserRepositorty;
+import com.client.repository.UserRepository;
 import com.client.vo.ResponseUser;
 import java.util.List;
 import java.util.UUID;
+import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-	private final UserRepositorty userRepositorty;
+	private final UserRepository userRepository;
 	private final BCryptPasswordEncoder passwordEncoder;
 
 	@Override
@@ -30,16 +31,31 @@ public class UserServiceImpl implements UserService {
 		User user = mapper.map(userDto, User.class);
 		user.setEncryptedPwd(passwordEncoder.encode(userDto.getPassword()));
 
-		return mapper.map(userRepositorty.save(user), ResponseUser.class);
+		return mapper.map(userRepository.save(user), ResponseUser.class);
 	}
 
 	@Override
 	public List<ResponseUser> findAll() {
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		return userRepositorty.findAll()
+		return userRepository.findAll()
 			.stream()
-			.map(user -> mapper.map(user, ResponseUser.class))
+			.map(user -> getResponseUser(mapper, user))
 			.collect(toList());
+	}
+
+	@Override
+	public ResponseUser findByUserId(String userId) {
+		ModelMapper mapper = new ModelMapper();
+		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		return userRepository.findByUserId(userId)
+			.map(user -> getResponseUser(mapper, user))
+			.orElseThrow(EntityNotFoundException::new);
+	}
+
+	private ResponseUser getResponseUser(ModelMapper mapper, User user) {
+		ResponseUser res = mapper.map(user, ResponseUser.class);
+		res.setOrders(List.of());
+		return res;
 	}
 }

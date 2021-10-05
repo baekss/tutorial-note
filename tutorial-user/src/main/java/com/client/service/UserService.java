@@ -7,4 +7,5 @@ import java.util.List;
 public interface UserService {
 	ResponseUser createUser(UserDto userDto);
 	List<ResponseUser> findAll();
+	ResponseUser findByUserId(String userId);
 }

@@ -2,7 +2,7 @@ POST http://127.0.0.1:8000/user-service/api/users
 Content-Type: application/json
 
 {
-	"email" : "black@apple.com",
+	"email" : "black@gmail.com",
 	"name" : "black",
 	"password" : "1234!@#"
 }
@@ -10,3 +10,7 @@ Content-Type: application/json
 ###
 
 GET http://127.0.0.1:8000/user-service/api/users
+
+###
+
+GET http://127.0.0.1:8000/user-service/api/users/a4b80239-2a69-4146-870f-9423b541526e
