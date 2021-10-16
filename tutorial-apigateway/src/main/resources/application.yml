@@ -48,3 +48,9 @@ spring:
                 postLogger: true
 #            - AddRequestHeader=user-request, user-request-header2
 #            - AddResponseHeader=user-response, user-response-header2
+        - id: third-service
+          uri: lb://catalog-service
+          predicates:
+            - Path=/catalog-service/**
+          filters:
+            - StripPrefix=1

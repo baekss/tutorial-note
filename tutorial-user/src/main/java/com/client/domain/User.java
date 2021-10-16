@@ -1,13 +1,15 @@
-package com.client.repository;
+package com.client.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -29,4 +31,8 @@ public class User {
 
 	@Column(nullable = false, unique = true)
 	private String encryptedPwd;
+
+	@Column(nullable = false, insertable = false, updatable = false)
+	@ColumnDefault(value = "CURRENT_TIMESTAMP")
+	private LocalDate createAt;
 }

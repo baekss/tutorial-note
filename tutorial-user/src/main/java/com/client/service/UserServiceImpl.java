@@ -3,8 +3,8 @@ package com.client.service;
 import static java.util.stream.Collectors.toList;
 
 import com.client.dto.UserDto;
-import com.client.repository.User;
-import com.client.repository.UserRepository;
+import com.client.domain.User;
+import com.client.domain.UserRepository;
 import com.client.vo.ResponseUser;
 import java.util.List;
 import java.util.UUID;
