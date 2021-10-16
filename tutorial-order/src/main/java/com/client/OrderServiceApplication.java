@@ -6,9 +6,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class EurekaClientOrderServiceApplication {
+public class OrderServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EurekaClientOrderServiceApplication.class, args);
+        SpringApplication.run(OrderServiceApplication.class, args);
     }
 }

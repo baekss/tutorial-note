@@ -5,10 +5,19 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/apigateway-service" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/tutorial-apigateway" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$/apigateway-service" />
+            <option value="$PROJECT_DIR$/tutorial-apigateway" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/tutorial-catalog" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/tutorial-catalog" />
           </set>
         </option>
       </GradleProjectSettings>
