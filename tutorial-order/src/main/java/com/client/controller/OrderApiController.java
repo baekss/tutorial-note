@@ -1,14 +1,25 @@
 package com.client.controller;
 
+import com.client.dto.OrderDto;
+import com.client.service.OrderService;
+import com.client.vo.RequestOrder;
+import com.client.vo.ResponseOrder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -17,6 +28,23 @@ import javax.servlet.http.HttpServletRequest;
 public class OrderApiController {
 
     private final Environment environment;
+	private final OrderService orderService;
+	private final ModelMapper mapper;
+
+	@PostMapping("/orders")
+	public ResponseEntity<ResponseOrder> save(@RequestBody RequestOrder requestOrder) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(mapper.map(requestOrder, OrderDto.class)));
+	}
+
+	@GetMapping("/users/{userId}/orders")
+	public ResponseEntity<List<ResponseOrder>> findAll(@PathVariable("userId") String userId) {
+		return ResponseEntity.ok(orderService.findOrderByUserId(userId));
+	}
+
+	@GetMapping("/orders/{orderId}")
+	public ResponseEntity<ResponseOrder> findByUserId(@PathVariable("orderId") String orderId) {
+		return ResponseEntity.ok(orderService.findOrderByOrderId(orderId));
+	}
 
     @GetMapping("/orders")
     public String findAll() {

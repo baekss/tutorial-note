@@ -8,7 +8,6 @@ import com.client.vo.ResponseCatalog;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,19 +15,17 @@ import org.springframework.stereotype.Service;
 public class CatalogServiceImpl implements CatalogService {
 
 	private final CatalogRepository catalogRepository;
+	private final ModelMapper mapper;
 
 	@Override
 	public List<ResponseCatalog> findAll() {
-		ModelMapper mapper = new ModelMapper();
-		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		return catalogRepository.findAll()
 			.stream()
-			.map(catalog -> getResponseCatalog(mapper, catalog))
+			.map(this::getResponseCatalog)
 			.collect(toList());
 	}
 
-	private ResponseCatalog getResponseCatalog(ModelMapper mapper, Catalog catalog) {
-		ResponseCatalog res = mapper.map(catalog, ResponseCatalog.class);
-		return res;
+	private ResponseCatalog getResponseCatalog(Catalog catalog) {
+		return mapper.map(catalog, ResponseCatalog.class);
 	}
 }

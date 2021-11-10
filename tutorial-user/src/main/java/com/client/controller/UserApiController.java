@@ -29,11 +29,10 @@ public class UserApiController {
 
     private final Environment environment;
 	private final UserService userService;
+	private final ModelMapper mapper;
 
 	@PostMapping("/users")
 	public ResponseEntity<ResponseUser> save(@RequestBody RequestUser requestUser) {
-		ModelMapper mapper = new ModelMapper();
-		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(mapper.map(requestUser, UserDto.class)));
 	}
 
