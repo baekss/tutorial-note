@@ -24,7 +24,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user-service/api")
+@RequestMapping("/api")
 public class UserApiController {
 
     private final Environment environment;

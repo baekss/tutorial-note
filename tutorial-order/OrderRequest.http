@@ -1,0 +1,13 @@
+POST http://127.0.0.1:8000/order-service/api/users/1/orders
+Content-Type: application/json
+
+{
+	"productId" : "P-003",
+	"quantity" : 10,
+	"unitPrice" : 3000,
+	"totalPrice" : 30000
+}
+
+###
+
+GET http://127.0.0.1:8000/order-service/api/users/1/orders

@@ -40,6 +40,7 @@ spring:
           predicates:
             - Path=/user-service/**
           filters:
+            - StripPrefix=1
             - name: CustomFilter
             - name: LoggingFilter
               args:

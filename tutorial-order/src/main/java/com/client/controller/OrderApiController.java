@@ -31,18 +31,20 @@ public class OrderApiController {
 	private final OrderService orderService;
 	private final ModelMapper mapper;
 
-	@PostMapping("/orders")
-	public ResponseEntity<ResponseOrder> save(@RequestBody RequestOrder requestOrder) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(mapper.map(requestOrder, OrderDto.class)));
+	@PostMapping("/users/{userId}/orders")
+	public ResponseEntity<ResponseOrder> save(@PathVariable("userId") String userId, @RequestBody RequestOrder requestOrder) {
+		OrderDto orderDto = mapper.map(requestOrder, OrderDto.class);
+		orderDto.setUserId(userId);
+		return ResponseEntity.status(HttpStatus.CREATED).body(orderService.createOrder(orderDto));
 	}
 
 	@GetMapping("/users/{userId}/orders")
-	public ResponseEntity<List<ResponseOrder>> findAll(@PathVariable("userId") String userId) {
-		return ResponseEntity.ok(orderService.findOrderByUserId(userId));
+	public ResponseEntity<List<ResponseOrder>> findOrderByUserId(@PathVariable("userId") String userId) {
+		return ResponseEntity.ok(orderService.findOrdersByUserId(userId));
 	}
 
 	@GetMapping("/orders/{orderId}")
-	public ResponseEntity<ResponseOrder> findByUserId(@PathVariable("orderId") String orderId) {
+	public ResponseEntity<ResponseOrder> findOrderByOrderId(@PathVariable("orderId") String orderId) {
 		return ResponseEntity.ok(orderService.findOrderByOrderId(orderId));
 	}
 

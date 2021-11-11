@@ -8,5 +8,4 @@ public class RequestOrder {
 	private Integer quantity;
 	private Integer unitPrice;
 	private Integer totalPrice;
-	private String userId;
 }

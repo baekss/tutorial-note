@@ -35,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<ResponseOrder> findOrderByUserId(String userId) {
+	public List<ResponseOrder> findOrdersByUserId(String userId) {
 		return orderRepository.findByUserId(userId).stream()
 			.map(this::getResponseOrder)
 			.collect(toList());

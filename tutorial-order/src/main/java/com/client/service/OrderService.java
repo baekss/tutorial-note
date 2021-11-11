@@ -7,5 +7,5 @@ import java.util.List;
 public interface OrderService {
 	ResponseOrder createOrder(OrderDto orderDto);
 	ResponseOrder findOrderByOrderId(String orderId);
-	List<ResponseOrder> findOrderByUserId(String userId);
+	List<ResponseOrder> findOrdersByUserId(String userId);
 }
