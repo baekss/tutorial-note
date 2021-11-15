@@ -2,8 +2,18 @@ POST http://127.0.0.1:8000/user-service/api/users
 Content-Type: application/json
 
 {
-	"email" : "black@gmail.com",
+	"email" : "black@app.com",
 	"name" : "black",
+	"password" : "1234!@#"
+}
+
+###
+
+POST http://127.0.0.1:8000/user-service/login
+Content-Type: application/json
+
+{
+	"email" : "black@app.com",
 	"password" : "1234!@#"
 }
 

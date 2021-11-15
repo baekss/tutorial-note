@@ -38,15 +38,37 @@ spring:
 #          uri: http://127.0.0.1:8002/
           uri: lb://user-service
           predicates:
-            - Path=/user-service/**
+            - Path=/user-service/login
+            - Method=POST
           filters:
-            - StripPrefix=1
-            - name: CustomFilter
-            - name: LoggingFilter
-              args:
-                baseMessage: Logging Filter
-                preLogger: true
-                postLogger: true
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/?(?<segment>.*), /$\{segment}
+        - id: second-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user-service/api/users
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/?(?<segment>.*), /$\{segment}
+        - id: second-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user-service/**
+            - Method=GET
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/?(?<segment>.*), /$\{segment}
+#          predicates:
+#            - Path=/user-service/**
+#          filters:
+#            - StripPrefix=1
+#            - name: CustomFilter
+#            - name: LoggingFilter
+#              args:
+#                baseMessage: Logging Filter
+#                preLogger: true
+#                postLogger: true
 #            - AddRequestHeader=user-request, user-request-header2
 #            - AddResponseHeader=user-response, user-response-header2
         - id: third-service

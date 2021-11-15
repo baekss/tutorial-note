@@ -7,10 +7,13 @@ import com.client.domain.UserRepository;
 import com.client.dto.UserDto;
 import com.client.vo.ResponseUser;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,13 @@ public class UserServiceImpl implements UserService {
 	private final UserRepository userRepository;
 	private final BCryptPasswordEncoder passwordEncoder;
 	private final ModelMapper mapper;
+
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		User user = userRepository.findByEmail(email)
+			.orElseThrow(EntityNotFoundException::new);
+		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getEncryptedPwd(), true, true, true, true, Set.of());
+	}
 
 	@Override
 	public ResponseUser createUser(UserDto userDto) {
