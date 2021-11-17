@@ -5,6 +5,7 @@ import static java.util.stream.Collectors.toList;
 import com.client.domain.User;
 import com.client.domain.UserRepository;
 import com.client.dto.UserDto;
+import com.client.security.SecurityUser;
 import com.client.vo.ResponseUser;
 import java.util.List;
 import java.util.Set;
@@ -29,7 +30,7 @@ public class UserServiceImpl implements UserService {
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = userRepository.findByEmail(email)
 			.orElseThrow(EntityNotFoundException::new);
-		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getEncryptedPwd(), true, true, true, true, Set.of());
+		return new SecurityUser(user.getUserId(), user.getEmail(), user.getEncryptedPwd(), true, true, true, true, Set.of());
 	}
 
 	@Override
