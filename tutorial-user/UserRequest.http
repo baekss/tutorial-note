@@ -20,6 +20,7 @@ Content-Type: application/json
 ###
 
 GET http://127.0.0.1:8000/user-service/api/users
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmMTFiYjYwMi1kNDljLTRmYjctYjNmYy1mMjYxZTIyYWMwNTkiLCJleHAiOjE2NDI5MzIyMTZ9.3zVuhGpTG_ehiGT9VDdNJQQH48reoeN0XXvGA-7tP0N1GCNci4kZJaodXUt_BjVm8hhVMEouiON7tp2feEGYGA
 
 ###
 

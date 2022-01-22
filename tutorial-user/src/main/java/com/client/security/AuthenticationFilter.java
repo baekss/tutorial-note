@@ -29,6 +29,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 		this.env = env;
 	}
 
+	// 스프링 시큐리티가 제공하는 "/login" 요청시 인증 처리를 담당
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
 		if (!MediaType.APPLICATION_JSON_VALUE.equals(request.getContentType())) {
@@ -37,7 +38,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 		try {
 			RequestLogin creds = Jackson2ObjectMapperBuilder.json()
 				.build().readValue(request.getInputStream(), RequestLogin.class);
-			return getAuthenticationManager()
+			return getAuthenticationManager() // pure한 암호는 WebSecurity의 passwordEncoder 통해 인코딩 된 후 스프링 시큐리티의 User 암호와 비교됨
 				.authenticate(new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getPassword(), null));
 		} catch (Exception e) {
 			throw new RuntimeException();

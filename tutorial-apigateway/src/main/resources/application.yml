@@ -34,7 +34,7 @@ spring:
             - CustomFilter
 #            - AddRequestHeader=order-request, order-request-header2
 #            - AddResponseHeader=order-response, order-response-header2
-        - id: second-service
+        - id: second-service-01
 #          uri: http://127.0.0.1:8002/
           uri: lb://user-service
           predicates:
@@ -43,7 +43,7 @@ spring:
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/?(?<segment>.*), /$\{segment}
-        - id: second-service
+        - id: second-service-02
           uri: lb://user-service
           predicates:
             - Path=/user-service/api/users
@@ -51,7 +51,7 @@ spring:
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/?(?<segment>.*), /$\{segment}
-        - id: second-service
+        - id: second-service-03
           uri: lb://user-service
           predicates:
             - Path=/user-service/**
@@ -59,6 +59,7 @@ spring:
           filters:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/?(?<segment>.*), /$\{segment}
+            - AuthorizationHeaderFilter
 #          predicates:
 #            - Path=/user-service/**
 #          filters:
@@ -77,3 +78,6 @@ spring:
             - Path=/catalog-service/**
           filters:
             - StripPrefix=1
+
+token:
+  secret: user_token

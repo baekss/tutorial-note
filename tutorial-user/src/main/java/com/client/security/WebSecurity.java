@@ -2,7 +2,6 @@ package com.client.security;
 
 import com.client.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class WebSecurity extends WebSecurityConfigurerAdapter {
@@ -29,11 +27,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	}
 
 	private AuthenticationFilter getAuthenticationFilter() throws Exception {
-		return new AuthenticationFilter(authenticationManager(), env);
+		return new AuthenticationFilter(authenticationManager(), env); // 인증 처리 필터
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		// UserDetailsService#loadUserByUsername 구현하고 있는 Component와 암호 비교시 사용할 Encoder
 		auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
 	}
 }
